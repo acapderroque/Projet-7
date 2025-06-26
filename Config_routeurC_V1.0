@@ -1,0 +1,21 @@
+enable
+configure terminal
+!
+interface Serial0/1/0
+ ip address 132.186.32.38 255.255.255.252
+ ipv6 address 2001:0:CAFE:2::2/64
+ ipv6 address FE80::C1 link-local
+ ipv6 enable
+ no shutdown
+!
+interface Serial0/1/1
+ ip address 132.186.32.41 255.255.255.252
+ ipv6 address 2001:0:CAFE:3::1/64
+ ipv6 address FE80::C2 link-local
+ ipv6 enable
+ clock rate 64000
+ no shutdown
+exit
+exit
+copy running-config startup-config
+startup-config
