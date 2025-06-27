@@ -1,0 +1,19 @@
+enable
+configure terminal
+!
+vlan 10
+ name Informatique
+vlan 20
+ name Finance
+vlan 30
+ name Commercial
+vlan 40
+ name RH
+vlan 50
+ name Direction
+vlan 99
+ name Serveurs
+ exit
+exit
+copy running-config startup-config
+startup-config
