@@ -22,3 +22,88 @@ vlan 99
 exit
 copy running-config startup-config
 startup-config
+!
+enable
+configure terminal
+!
+ip dhcp excluded-address 192.168.10.1 192.168.10.10
+!
+ip dhcp pool Informatique
+ network 192.168.10.0 255.255.255.0
+ default-router 192.168.10.1
+ dns-server 192.168.99.10
+!
+ip dhcp pool Finance
+ network 192.168.20.0 255.255.255.0
+ default-router 192.168.20.1
+ dns-server 192.168.99.10
+!
+ip dhcp pool Commercial
+ network 192.168.30.0 255.255.255.0
+ default-router 192.168.30.1
+ dns-server 192.168.99.10
+!
+ip dhcp pool RH
+ network 192.168.40.0 255.255.255.0
+ default-router 192.168.40.1
+ dns-server 192.168.99.10
+!
+ip dhcp pool Direction
+ network 192.168.50.0 255.255.255.0
+ default-router 192.168.50.1
+ dns-server 192.168.99.10
+!
+exit
+exit
+copy running-config startup-config
+startup-config
+!
+enable
+configure terminal
+!
+interface vlan 10
+ ip address 192.168.10.1 255.255.255.0
+ no shutdown
+
+interface vlan 20
+ ip address 192.168.20.1 255.255.255.0
+ no shutdown
+
+interface vlan 30
+ ip address 192.168.30.1 255.255.255.0
+ no shutdown
+
+interface vlan 40
+ ip address 192.168.40.1 255.255.255.0
+ no shutdown
+
+interface vlan 50
+ ip address 192.168.50.1 255.255.255.0
+ no shutdown
+
+interface vlan 99
+ ip address 192.168.99.1 255.255.255.0
+ no shutdown
+  exit
+exit
+copy running-config startup-config
+startup-config
+!
+enable
+configure terminal
+!
+ip routing
+exit
+copy running-config startup-config
+startup-config
+!
+enable
+configure terminal
+
+interface range fastEthernet 0/23-24
+ switchport trunk encapsulation dot1q 
+ switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50,99
+ no shutdown
+
+exit

@@ -31,6 +31,7 @@ interface range FastEthernet 0/1 - 4
 interface port-channel 1
  switchport trunk encapsulation dot1q
  switchport mode trunk
+ switchport trunk allowed vlan 10,20,30,40,50
  exit
 exit
 copy running-config startup-config
@@ -62,6 +63,14 @@ interface vlan 50
 interface vlan 99
  ip address 192.168.99.1 255.255.255.0
  no shutdown
+  exit
+exit
+copy running-config startup-config
+startup-config
+!
+enable
+configure terminal
+ip routing
   exit
 exit
 copy running-config startup-config
