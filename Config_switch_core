@@ -1,6 +1,11 @@
 enable
 configure terminal
 !
+Hostname SwCore  
+exit 
+enable
+configure terminal
+!
 vlan 10
  name Informatique
 vlan 20
