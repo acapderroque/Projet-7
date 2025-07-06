@@ -31,8 +31,8 @@ interface range FastEthernet 0/1 - 4
 interface port-channel 1
  switchport trunk encapsulation dot1q
  switchport mode trunk
- switchport trunk allowed vlan 10,20,30,40,50
- exit
+ switchport trunk allowed vlan 10,20,30,40,50,99
+  exit
 exit
 copy running-config startup-config
 startup-config

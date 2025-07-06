@@ -1,13 +1,13 @@
 enable
 configure terminal
 !
-Hostname SwInfo  
+Hostname SwDNS  
 exit 
 !
 enable
 configure terminal
 vlan 10
- name Informatique
+ name DNS
 exit
 ! 
 interface range fa0/1 - 10
