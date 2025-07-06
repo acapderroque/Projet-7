@@ -17,3 +17,15 @@ vlan 99
 exit
 copy running-config startup-config
 startup-config
+enable
+configure terminal
+!
+interface range FastEthernet 0/1 - 4
+ channel-group 1 mode active
+
+interface port-channel 1
+ switchport mode trunk
+ exit
+exit
+copy running-config startup-config
+startup-config
