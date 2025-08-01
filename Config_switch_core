@@ -60,29 +60,73 @@ startup-config
 !
 enable
 configure terminal
+ipv6 unicast-routing
+!
+ipv6 dhcp pool DHCPv6-Informatique
+ address prefix 2001:0:CAFE:10::/64
+ dns-server 2001:0:CAFE:99::10
+ !
+ ipv6 dhcp pool DHCPv6-Finance
+ address prefix 2001:0:CAFE:20::/64
+ dns-server 2001:0:CAFE:99::10
+ !
+ ipv6 dhcp pool DHCPv6-Commercial
+ address prefix 2001:0:CAFE:30::/64
+ dns-server 2001:0:CAFE:99::10
+ !
+ ipv6 dhcp pool DHCPv6-RH
+ address prefix 2001:0:CAFE:40::/64
+ dns-server 2001:0:CAFE:99::10
+ !
+ ipv6 dhcp pool DHCPv6-Direction
+ address prefix 2001:0:CAFE:50::/64
+ dns-server 2001:0:CAFE:99::10
+ exit
+exit
+copy running-config startup-config
+startup-config
+!
+enable
+configure terminal
 !
 interface vlan 10
  ip address 192.168.10.1 255.255.255.0
+ ipv6 address 2001:0:CAFE:10::1/64
+ ipv6 dhcp server DHCPv6-Informatique
+ ipv6 nd managed-config-flag
  no shutdown
 
 interface vlan 20
  ip address 192.168.20.1 255.255.255.0
+ ipv6 address 2001:0:CAFE:20::1/64
+ ipv6 dhcp server DHCPv6-Finance
+ ipv6 nd managed-config-flag
  no shutdown
 
 interface vlan 30
  ip address 192.168.30.1 255.255.255.0
+ ipv6 address 2001:0:CAFE:30::1/64
+ ipv6 dhcp server DHCPv6-Commercial
+ ipv6 nd managed-config-flag
  no shutdown
 
 interface vlan 40
  ip address 192.168.40.1 255.255.255.0
+ ipv6 address 2001:0:CAFE:40::1/64
+ ipv6 dhcp server DHCPv6-RH
+ ipv6 nd managed-config-flag
  no shutdown
 
 interface vlan 50
  ip address 192.168.50.1 255.255.255.0
+ ipv6 address 2001:0:CAFE:50::1/64
+ ipv6 dhcp server DHCPv6-Direction
+ ipv6 nd managed-config-flag
  no shutdown
 
 interface vlan 99
  ip address 192.168.99.1 255.255.255.0
+ ipv6 address 2001:0:CAFE:99::1/64
  no shutdown
   exit
 exit
@@ -100,10 +144,12 @@ startup-config
 enable
 configure terminal
 
-interface range fastEthernet 0/23-24
- switchport trunk encapsulation dot1q 
+interface range GigabitEthernet 1/0/23-24
  switchport mode trunk
  switchport trunk allowed vlan 10,20,30,40,50,99
  no shutdown
-
+  exit
 exit
+!
+copy running-config startup-config
+startup-config
