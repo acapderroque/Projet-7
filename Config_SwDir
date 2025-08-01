@@ -1,0 +1,23 @@
+enable
+configure terminal
+!
+Hostname SwDir 
+exit 
+!
+enable
+configure terminal
+vlan 50
+ name Direction
+exit
+! 
+interface range fa0/1 - 10
+ switchport mode access
+ switchport access vlan 50
+ spanning-tree portfast
+exit
+!
+interface range gigabitethernet0/1-2
+ switchport mode trunk
+ switchport trunk allowed vlan 40
+ no shutdown
+exit

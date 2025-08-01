@@ -1,0 +1,23 @@
+enable
+configure terminal
+!
+Hostname SwRH 
+exit 
+!
+enable
+configure terminal
+vlan 40
+ name RH
+exit
+! 
+interface range fa0/1 - 10
+ switchport mode access
+ switchport access vlan 40
+ spanning-tree portfast
+exit
+!
+interface range gigabitethernet0/1-2
+ switchport mode trunk
+ switchport trunk allowed vlan 40
+ no shutdown
+exit
